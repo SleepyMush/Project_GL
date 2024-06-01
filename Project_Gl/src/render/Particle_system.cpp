@@ -9,6 +9,7 @@ void Particle_system::UpdateParticle(const float deltaTime)
 			m_matrix[i] = m_particles[i].getM();
 		}
 	}
+
 }
 
 void Particle_system::CreateParticle(const glm::vec3& position, const glm::vec3& oreintation, const glm::vec3& scale, const glm::vec4& color)
@@ -35,7 +36,7 @@ void Particle_system::CreateParticle(const glm::vec3& position, const glm::vec3&
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, vert.size() * sizeof(VertexInfo), vert.data(), GL_STATIC_DRAW);
-
+	
 	// position attribute
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexInfo), (void*)offsetof(VertexInfo, pos));
 	glEnableVertexAttribArray(0);
@@ -58,5 +59,5 @@ void Particle_system::DrawParticle(const unsigned int shaderID, const glm::mat4&
 	glUniformMatrix4fv(glGetUniformLocation(shaderID, "model"),m_matrix.size(), GL_FALSE, &m_matrix[0][0][0]);
 
 	glBindVertexArray(particleSystem.VAO);
-	glDrawElementsInstanced(GL_TRIANGLES, particleSystem.vert.size(), GL_UNSIGNED_INT, nullptr, m_matrix.size());
+	glDrawArraysInstanced(GL_TRIANGLES, 0, particleSystem.vert.size(), m_matrix.size());
 }

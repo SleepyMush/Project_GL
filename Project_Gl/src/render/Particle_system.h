@@ -10,7 +10,6 @@ struct VertexInfo
 class Particle_system
 {
 public:
-
 	std::vector<VertexInfo> vert;
 	unsigned int VBO, VAO;
 
@@ -21,8 +20,10 @@ public:
 	void DrawParticle(const unsigned int shaderID, const glm::mat4& view, const glm::mat4& projection);
 
 	Particle particle;
-	std::vector<Particle> m_particles;
+	std::vector<Particle> particles;
+
 private:
+	std::vector<Particle> m_particles;
 	std::vector<glm::vec4> m_color;
 	std::vector < glm::mat4> m_matrix;
 };

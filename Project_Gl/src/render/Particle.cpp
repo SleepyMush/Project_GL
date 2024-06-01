@@ -1,14 +1,5 @@
 #include "Particle.h"
 
-void Particle::particle(const glm::vec3& position, const glm::vec3& oreintation, const glm::vec3& scale, const glm::vec4& color)
-{
-	m_position = position;
-	m_orientation = oreintation;
-	m_scale = scale;
-	transformchange = true;
-	m_color = color;
-}
-
 void Particle::setposition(const glm::vec3& position)
 {
 	if (position != m_position) {
@@ -35,6 +26,15 @@ void Particle::setscale(const glm::vec3& scale)
 }
 
 void Particle::setcolor(const glm::vec4& color) {
+	m_color = color;
+}
+
+Particle::Particle(const glm::vec3& position, const glm::vec3& oreintation, const glm::vec3& scale, const glm::vec4& color)
+{
+	m_position = position;
+	m_orientation = oreintation;
+	m_scale = scale;
+	transformchange = true;
 	m_color = color;
 }
 

@@ -45,26 +45,6 @@ float HI = 2.0f;
 float Low = 0.0f;
 float high = 0.256f;
 
-void InitalizeParticle()
-{
-	//p.particle.push_back(p.m_particles);
-	float r3 = LO + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (HI - LO)));
-	float r4 = LO + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (HI - LO)));
-	glm::vec3 random_output = glm::vec3(r3, 1, r4);
-
-	std::default_random_engine generator(std::random_device{}());
-	std::uniform_real_distribution<float> distribution(Low, high);
-	float r = distribution(generator); // Red component
-	float g = distribution(generator); // Green component
-	float b = distribution(generator); // Blue component
-	float a = distribution(generator); // Alpha component
-	glm::vec4 randomColor = glm::vec4(r, g, b, a);
-
-	p.particle.particle(random_output, random_output, glm::vec3(1, 1, 1), randomColor);
-
-};
-
-
 int main()
 {
 	window.init();
@@ -161,7 +141,22 @@ int main()
 
 	texture.bind(0);
 
-	InitalizeParticle();
+	for (int i = 0; i < 10; i++) {
+		p.particles.push_back(p.particle);
+		float r3 = LO + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (HI - LO)));
+		float r4 = LO + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (HI - LO)));
+		glm::vec3 random_output = glm::vec3(r3, 1, r4);
+
+		std::default_random_engine generator(std::random_device{}());
+		std::uniform_real_distribution<float> distribution(Low, high);
+		float r = distribution(generator); // Red component
+		float g = distribution(generator); // Green component
+		float b = distribution(generator); // Blue component
+		float a = distribution(generator); // Alpha component
+		glm::vec4 randomColor = glm::vec4(r, g, b, a);
+
+		p.CreateParticle(random_output, random_output, glm::vec3(1, 1, 1), randomColor);
+	}
 
 	while (!glfwWindowShouldClose(window))
 	{

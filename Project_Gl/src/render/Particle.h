@@ -11,8 +11,9 @@
 
 class Particle {
 public:
-	void particle(const glm::vec3& position, const glm::vec3& oreintation, const glm::vec3& scale, const glm::vec4& color);
 	Particle() {};
+	Particle(const glm::vec3& position, const glm::vec3& oreintation, const glm::vec3& scale, const glm::vec4& color);
+
 
 	glm::mat4 getM()const { return matrix; };
 
@@ -38,6 +39,7 @@ private:
 
 	glm::mat4 matrix = glm::mat4(1.0f);
 	bool transformchange = false;
+
 };
 
 
